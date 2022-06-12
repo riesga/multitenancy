@@ -13,7 +13,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        Passport::routes(null, ['middleware' => [
+            'universal',
+            InitializeTenancyByDomain::class
+        ]]);
     }
 
     /**
