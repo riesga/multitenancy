@@ -13,9 +13,9 @@ return [
     |
     */
 
-    'private_key' => 'passport.public_key',
+    'private_key' => env('PASSPORT_PRIVATE_KEY'),
 
-    'public_key' => 'passport.private_key',
+    'public_key' => env('PASSPORT_PUBLIC_KEY'),
 
     /*
     |--------------------------------------------------------------------------

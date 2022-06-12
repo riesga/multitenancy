@@ -171,6 +171,11 @@ return [
         // Stancl\Tenancy\Features\CrossDomainRedirect::class, // https://tenancyforlaravel.com/docs/v3/features/cross-domain-redirect
     ],
 
+    'storage_to_config_map' => [
+        'passport_public_key' => 'passport.public_key',
+        'passport_private_key' => 'passport.private_key',
+    ],
+
     /**
      * Should tenancy routes be registered.
      *

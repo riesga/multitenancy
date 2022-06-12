@@ -3,6 +3,7 @@
 use App\Http\Controllers\TenantController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PassportController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +21,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post('/register', [TenantController::class, 'store']);
+
+Route::post('registeruser', [PassportController::class, 'register']);
+Route::post('login', [PassportController::class, 'login']);
+
+// put all api protected routes here
+Route::middleware('auth:api')->group(function () {
+    Route::post('user-detail', [PassportController::class, 'userDetail']);
+    Route::post('logout', [PassportController::class, 'logout']);
+});

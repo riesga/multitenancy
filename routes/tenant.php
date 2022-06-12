@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Http\Controllers\PassportController;
 use App\Http\Controllers\UserController;
 use App\Models\Tenant;
 use App\Models\User;
@@ -53,6 +54,7 @@ Route::middleware([
     ])->prefix('apicliente')->group(function () {
         Route::post('/registrar', [UserController::class, 'store']);
         Route::get('/usuarios', [UserController::class, 'index']);
-
+        Route::post('register', [PassportController::class, 'register']);
+        Route::post('login', [PassportController::class, 'login']);
 });
 
