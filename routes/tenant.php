@@ -2,7 +2,9 @@
 
 declare(strict_types=1);
 
+use App\Http\Controllers\UserController;
 use App\Models\Tenant;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use Stancl\Tenancy\Database\Models\Domain;
 use Stancl\Tenancy\Middleware\InitializeTenancyByDomain;
@@ -22,15 +24,35 @@ use Stancl\Tenancy\Resolvers\DomainTenantResolver;
 |
 */
 
+
 Route::middleware([
     'web',
     InitializeTenancyBySubdomain::class,
     PreventAccessFromCentralDomains::class,
-])->group(function () {
+])->prefix('clientes')->group(function () {
     //dd(Tenant::all(), Domain::all());
     Route::get('/', function () {
        // dd(\App\Models\User::all());
        //dd(DomainTenantResolver::$currentDomain);
-        return 'This is your multi-tenant application. The id of the current tenant is the number ' . tenant('id');
+        return 'Esta es su aplicación multiusuario. El id del inquilino actual es el número' . tenant('id');
     });
+
+
+    Route::get('/users', function () {
+        return \App\Models\User::all();
+    });
+
+
 });
+
+
+Route::middleware([
+    'api',
+    InitializeTenancyBySubdomain::class,
+    PreventAccessFromCentralDomains::class,
+    ])->prefix('apicliente')->group(function () {
+        Route::post('/registrar', [UserController::class, 'store']);
+        Route::get('/usuarios', [UserController::class, 'index']);
+
+});
+

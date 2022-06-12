@@ -19,4 +19,3 @@ Route::get('/', function () {
 });
 
 Route::get('/tenants', [TenantController::class, 'index']);
-Route::post('/tenants', [TenantController::class, 'store']);

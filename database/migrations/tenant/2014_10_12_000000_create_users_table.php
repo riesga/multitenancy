@@ -15,7 +15,28 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('code_client');
+            $table->string('first_name');
+            $table->string('second_name');
+            $table->string('last_name');
+            $table->string('second_last_name');
+            $table->string('company');
+            $table->smallInteger('document_type')->comment('Tipo documento identidad');
+            $table->smallInteger('tax_regime')->comment('Tipo regimen contributivo');
+            $table->string('company_type',1)->comment('Tipo empresa natural o juridica');
+            $table->string('nit',15);
+            $table->smallInteger('check_digit')->comment('Digito verificación nit');
+            $table->string('ciiu',10);
+            $table->integer('code_postal');
+            $table->smallInteger('stratum')->comment('Estrato economico');
+            $table->string('address');
+            $table->string('country');
+            $table->string('department');
+            $table->string('municipality');
+            $table->string('telephone');
+            $table->smallInteger('state');
+            $table->smallInteger('plan');
+            $table->string('comments');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
