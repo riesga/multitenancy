@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Laravel\Passport\Passport;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -17,6 +18,8 @@ class AppServiceProvider extends ServiceProvider
             'universal',
             InitializeTenancyByDomain::class
         ]]);
+
+        Passport::loadKeysFrom(base_path(config('passport.key_path')));
     }
 
     /**
