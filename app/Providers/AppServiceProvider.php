@@ -16,7 +16,8 @@ class AppServiceProvider extends ServiceProvider
     {
         Passport::routes(null, ['middleware' => [
             'universal',
-            InitializeTenancyByDomain::class
+            InitializeTenancyByDomain::class,
+            InitializeTenancyBySubdomain::class,
         ]]);
 
         Passport::loadKeysFrom(base_path(config('passport.key_path')));
@@ -29,6 +30,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Passport::loadKeysFrom(base_path(config('passport.key_path')));
     }
 }
