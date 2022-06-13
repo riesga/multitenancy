@@ -33,17 +33,8 @@ Route::middleware([
 ])->prefix('clientes')->group(function () {
     //dd(Tenant::all(), Domain::all());
     Route::get('/', function () {
-       // dd(\App\Models\User::all());
-       //dd(DomainTenantResolver::$currentDomain);
         return 'Esta es su aplicación multiusuario. El id del inquilino actual es el número' . tenant('id');
     });
-
-
-    Route::get('/users', function () {
-        return \App\Models\User::all();
-    });
-
-
 });
 
 
@@ -52,9 +43,9 @@ Route::middleware([
     InitializeTenancyBySubdomain::class,
     PreventAccessFromCentralDomains::class,
     ])->prefix('apicliente')->group(function () {
-        Route::post('/registrar', [UserController::class, 'store']);
-        Route::get('/usuarios', [UserController::class, 'index']);
-        Route::post('register', [PassportController::class, 'register']);
+        Route::post('/registrar', [UserController::class, 'store'])->middleware('auth:api');
+        Route::get('/usuarios', [UserController::class, 'index'])->middleware('auth:api');
+        //Route::post('register', [PassportController::class, 'register']);
         Route::post('login', [PassportController::class, 'login']);
 });
 

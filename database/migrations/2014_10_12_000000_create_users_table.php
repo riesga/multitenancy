@@ -16,17 +16,17 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('first_name');
-            $table->string('second_name');
+            $table->string('second_name')->nullable();
             $table->string('last_name');
-            $table->string('second_last_name');
+            $table->string('second_last_name')->nullable();
             $table->string('company');
             $table->smallInteger('document_type')->comment('Tipo documento identidad');
             $table->smallInteger('tax_regime')->comment('Tipo regimen contributivo');
             $table->string('company_type',1)->comment('Tipo empresa natural o juridica');
             $table->string('nit',15);
             $table->smallInteger('check_digit')->comment('Digito verificación nit');
-            $table->string('ciiu',10);
-            $table->integer('code_postal');
+            $table->string('ciiu',10)->nullable();
+            $table->integer('code_postal')->nullable();
             $table->smallInteger('stratum')->comment('Estrato economico');
             $table->string('address');
             $table->string('country');
@@ -35,7 +35,7 @@ class CreateUsersTable extends Migration
             $table->string('telephone');
             $table->smallInteger('state');
             $table->smallInteger('plan');
-            $table->string('comments');
+            $table->string('comments')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
