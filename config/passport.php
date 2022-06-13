@@ -63,4 +63,5 @@ return [
         ],
     ],
 
+    'key_path' => env('OAUTH_KEY_PATH', 'storage')
 ];

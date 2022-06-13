@@ -20,7 +20,7 @@ class AppServiceProvider extends ServiceProvider
             InitializeTenancyBySubdomain::class,
         ]]);
 
-        Passport::loadKeysFrom(base_path(config('passport.key_path')));
+        //Passport::loadKeysFrom(base_path(config('passport.key_path')));
     }
 
     /**
@@ -30,6 +30,15 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        /*
+        Passport::personalAccessClientId(
+            config('passport.personal_access_client.id')
+        );
+
+        Passport::personalAccessClientSecret(
+            config('passport.personal_access_client.secret')
+        );*/
+
         Passport::loadKeysFrom(base_path(config('passport.key_path')));
     }
 }

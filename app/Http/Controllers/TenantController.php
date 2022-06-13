@@ -6,6 +6,7 @@ use App\Models\Tenant;
 use App\Models\User;
 use App\Models\UserTenant;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -109,6 +110,11 @@ class TenantController extends Controller
                 'tenant' => $tenant->id
             ]);
             $user->save();
+
+            Artisan::call('tenants:seed', [
+                '--tenants' => $tenant->id,
+                '--class' => 'TenantSeeder',
+            ]);
 
             return $tenant;
         }
